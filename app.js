@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 
+const collections = require('./collections');
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const viewsRouter = require('./routes/views');
@@ -12,7 +14,7 @@ const viewsRouter = require('./routes/views');
 const app = express();
 
 const settings = require('./settings');
-console.log(settings);
+console.log(settings, collections.map);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
