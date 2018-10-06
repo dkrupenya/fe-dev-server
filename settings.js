@@ -4,9 +4,15 @@ const settings = {
     partialsPath: 'views/partials',
     dbPath: 'db',
     initialDataPath: 'jsonData',
-    dataFiles: [
-      'users.json',
-      'books.json',
+    collections: [
+        {
+            name: 'users',
+            initialData: 'jsonData/users.json',
+        },
+        {
+            name: 'books',
+            initialData: 'jsonData/books.json',
+        },
     ],
     mapping: [
         {

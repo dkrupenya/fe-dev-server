@@ -8,12 +8,13 @@ const SETTINGS_FILE_NAME = 'settings';
 console.log(process.argv);
 const settingsPath = process.argv[2];
 const settingsDir = path.join(global.appRoot, settingsPath || DEFAULT_SETTINGS_PATH);
-const settingFile = path.join(settingsDir, SETTINGS_FILE_NAME)
+const settingFile = path.join(settingsDir, SETTINGS_FILE_NAME);
 if (!settingsPath) {
     console.log('No setting file declared. Application will use default settings');
 }
 
 const settings = require(settingFile);
+settings.settingsDir = settingsDir;
 
 // Mandatory paths
 ['staticPath', 'viewsPath', 'partialsPath', 'dbPath', 'initialDataPath'].forEach((pathString) => {
