@@ -1,0 +1,11 @@
+<h1>{{data.title}}</h1>
+<table>
+    <thead>
+        <td>type</td>
+        <td>place</td>
+        <td>magnitude</td>
+    </thead>
+    {{#each resp.features}}
+        {{>quake data=this}}
+    {{/each}}
+</table>

@@ -6,10 +6,10 @@ const settings = require('../modules/settingsLoader');
 /* render hbs based on mapper in settings */
 router.get('/:path', function (req, res, next) {
     const path = req.params.path;
-    const page = settings.mapping.find(m => m.path === path);
+    const page = settings.pages.find(m => m.path === path);
 
     if (!page) {
-        res.status(404).render('error', {message: `Path ${path} mot found`});
+        res.status(404).render('error', {message: `Path "${path}" is not found`});
         return;
     }
     if (!page.url) {
@@ -18,10 +18,16 @@ router.get('/:path', function (req, res, next) {
     }
 
     axios.get(page.url)
-        .then(resp => {
+        .then(response => {
+            if (response.status !== 200) {
+                return Promise.reject({
+                    message: `request to ${page.url} failed`,
+                    err: response.data,
+                })
+            }
             res.status(200).render(page.view, {
                 data: page.data,
-                resp: resp,
+                resp: response.data,
             });
         })
         .catch(err => {

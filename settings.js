@@ -3,7 +3,6 @@ const settings = {
     viewsPath: 'views',
     partialsPath: 'views/partials',
     dbPath: 'db',
-    initialDataPath: 'jsonData',
     collections: [
         {
             name: 'users',
@@ -16,11 +15,25 @@ const settings = {
     ],
     pages: [
         {
-            path: '',
-            view: '',
+            path: 'books',
+            view: 'books',
             data: {},
-            url: '',
-        }
+            url: 'http://localhost:3000/api/books',
+        },
+        {
+            path: 'book',
+            view: 'book',
+            data: {},
+            url: 'http://localhost:3000/api/books/2',
+        },
+        {
+            path: 'quakes',
+            view: 'quakes',
+            data: {
+                title: 'All earthquakes happens 01.01.2017',
+            },
+            url: 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2017-01-01&endtime=2017-01-02',
+        },
     ],
 };
 
