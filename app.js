@@ -8,29 +8,23 @@ const expressHandlebars  = require('express-handlebars');
 
 global.appRoot = path.resolve(__dirname);
 
-const collections = require('./modules/collections');
-
-// const indexRouter = require('./routes/index');
-// const usersRouter = require('./routes/users');
-const viewsRouter = require('./routes/views');
-
+// init settings and collections
 const settings = require('./modules/settingsLoader');
+const collections = require('./modules/collections');
+collections.init();
+
+const viewsRouter = require('./routes/views');
+const apiRouter = require('./routes/restApi');
 
 const app = express();
-
-// const settings = require('./settings');
-// console.log(settings, collections.map);
 
 // view engine setup
 const viewEngine = expressHandlebars({
     defaultLayout: 'layout',
     extname: '.hbs',
-    // layoutsDir: settings.viewsPath,
-    layoutsDir: "views/",
-    // partialsDir: settings.partialsPath,
-    partialsDir: "views/partials/",
+    layoutsDir: settings.viewsPath,
+    partialsDir: settings.partialsPath,
 });
-
 app.engine('hbs', viewEngine);
 app.set('view engine', 'hbs');
 
@@ -44,10 +38,10 @@ app.use(sassMiddleware({
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use(express.static(settings.staticPath));
+
+app.use('/api', apiRouter);
 app.use('/hbs', viewsRouter);
 
 // catch 404 and forward to error handler

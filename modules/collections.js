@@ -6,6 +6,21 @@ const settings = require('./settingsLoader');
 const dbPath = settings.dbPath;
 const db = new Engine.Db(dbPath, {});
 
+const collectionsMap = {};
+
+function initCollections() {
+    const collections = settings.collections;
+
+    if (!collections || !collections.length) {
+        console.log('No collections declared');
+        return;
+    }
+
+    collections.forEach(collection => {
+        collectionsMap[collection.name] = createCollection(collection);
+    });
+}
+
 function createCollection(collection) {
     const collectionFilePath = path.join(settings.dbPath, collection.name);
     const collectionFileExists = fs.existsSync(collectionFilePath);
@@ -15,7 +30,7 @@ function createCollection(collection) {
     // don't modify existing collection
     if (collectionFileExists) {
         console.log(`Collection ${collection.name} exists and was not updated`);
-        return;
+        return dbCollection;
     }
 
     // fill collection with initial data
@@ -37,21 +52,7 @@ function createCollection(collection) {
     return dbCollection;
 }
 
-class Collections {
-    constructor() {
-        this.map = {};
-
-        const collections = settings.collections;
-
-        if (!collections || !collections.length) {
-            console.log('No collections declared');
-            return;
-        }
-
-        collections.forEach(collection => {
-            this.map[collection.name] = createCollection(collection);
-        });
-    }
+module.exports = {
+    map: collectionsMap,
+    init: initCollections,
 };
-
-module.exports = new Collections();
