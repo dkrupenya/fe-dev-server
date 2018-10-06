@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var socket = io();
+    socket.on('connect', function() {
+        console.log('connected to server');
+        // changes channel - server will send here all db changes
+        socket.on('changes channel', function(msg) {
+            console.log(msg);
+        })
+    });
+</script>
+</html>
