@@ -4,25 +4,33 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
+const expressHandlebars  = require('express-handlebars');
 
 global.appRoot = path.resolve(__dirname);
 
-const collections = require('./modules/collections');
+// const collections = require('./modules/collections');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+// const indexRouter = require('./routes/index');
+// const usersRouter = require('./routes/users');
 const viewsRouter = require('./routes/views');
 
-const settings2 = require('./modules/settingsLoader');
+const settings = require('./modules/settingsLoader');
 
 const app = express();
 
-const settings = require('./settings');
-console.log(settings, collections.map);
+// const settings = require('./settings');
+// console.log(settings, collections.map);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+const viewEngine = expressHandlebars({
+    defaultLayout: 'layout',
+    extname: '.hbs',
+    layoutsDir: settings.viewsPath,
+    partialsDir: settings.partialsPath,
+});
+
+app.engine('handlebars', viewEngine);
+app.set('view engine', 'handlebars');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,8 +44,8 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
 app.use('/hbs', viewsRouter);
 
 // catch 404 and forward to error handler

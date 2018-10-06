@@ -7,9 +7,9 @@ class Collections {
 
         const books = require('../jsonData/books');
 
-        booksCollection.insert(books, {w:1}, function(err, result) {
-            console.log('insert', err, result);
-        });
+        // booksCollection.insert(books, {w:1}, function(err, result) {
+        //     console.log('insert', err, result);
+        // });
 
         this.map = {
             booksCollection: booksCollection,
