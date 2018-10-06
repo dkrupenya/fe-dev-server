@@ -1,21 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const collections = require('../modules/collections');
+const axios = require('axios');
+const settings = require('../modules/settingsLoader');
 
-/* GET users listing. */
-router.get('/:path', function(req, res, next) {
-    const format = req.params.path;
-    // collections.map.booksCollection.findOne({id: "1"}, function(err, item) {
-    //     if (err) {
-    //         res.render('error', { error: err });
-    //         return;
-    //     }
-    //     res.render('book', { resp: item });
-    //     // res.status(200).send('respond with a resource ' + format + ' ' + JSON.stringify(item));
-    // });
-    res.render('book', { resp: null });
-    // res.status(200).send('test');
+/* render hbs based on mapper in settings */
+router.get('/:path', function (req, res, next) {
+    const path = req.params.path;
+    const page = settings.mapping.find(m => m.path === path);
 
+    if (!page) {
+        res.status(404).render('error', {message: `Path ${path} mot found`});
+        return;
+    }
+    if (!page.url) {
+        res.status(200).render(page.view, {data: page.data});
+        return;
+    }
+
+    axios.get(page.url)
+        .then(resp => {
+            res.status(200).render(page.view, {
+                data: page.data,
+                resp: resp,
+            });
+        })
+        .catch(err => {
+            res.status(400).render('error', {message: err});
+        });
 });
 
 module.exports = router;

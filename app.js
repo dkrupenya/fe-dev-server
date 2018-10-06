@@ -8,7 +8,7 @@ const expressHandlebars  = require('express-handlebars');
 
 global.appRoot = path.resolve(__dirname);
 
-// const collections = require('./modules/collections');
+const collections = require('./modules/collections');
 
 // const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
@@ -25,12 +25,14 @@ const app = express();
 const viewEngine = expressHandlebars({
     defaultLayout: 'layout',
     extname: '.hbs',
-    layoutsDir: settings.viewsPath,
-    partialsDir: settings.partialsPath,
+    // layoutsDir: settings.viewsPath,
+    layoutsDir: "views/",
+    // partialsDir: settings.partialsPath,
+    partialsDir: "views/partials/",
 });
 
-app.engine('handlebars', viewEngine);
-app.set('view engine', 'handlebars');
+app.engine('hbs', viewEngine);
+app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());

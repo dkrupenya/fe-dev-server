@@ -14,9 +14,12 @@ const settings = {
             initialData: 'jsonData/books.json',
         },
     ],
-    mapping: [
+    pages: [
         {
-            url: ''
+            path: '',
+            view: '',
+            data: {},
+            url: '',
         }
     ],
 };
