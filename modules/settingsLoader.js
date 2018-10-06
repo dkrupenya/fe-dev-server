@@ -17,7 +17,7 @@ const settings = require(settingFile);
 settings.settingsDir = settingsDir;
 
 // Mandatory paths
-['staticPath', 'viewsPath', 'partialsPath', 'dbPath'].forEach((pathString) => {
+['staticPath', 'viewsPath', 'partialsPath', 'dbPath', 'fileUploadPath'].forEach((pathString) => {
     if (!settings[pathString]) {
         console.error(`${pathString} must be declared`);
     } else {

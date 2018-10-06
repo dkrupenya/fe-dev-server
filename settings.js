@@ -1,5 +1,8 @@
 const settings = {
     staticPath: 'public',
+    // it is better to keep uploaded files inside static directory
+    // in order to have access to these files
+    fileUploadPath: 'public/uploaded',
     viewsPath: 'views',
     partialsPath: 'views/partials',
     dbPath: 'db',
