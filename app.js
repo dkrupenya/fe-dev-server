@@ -5,11 +5,15 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 
-const collections = require('./collections');
+global.appRoot = path.resolve(__dirname);
+
+const collections = require('./modules/collections');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const viewsRouter = require('./routes/views');
+
+const settings2 = require('./modules/settingsLoader');
 
 const app = express();
 

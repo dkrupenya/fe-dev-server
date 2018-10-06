@@ -5,7 +5,7 @@ class Collections {
         const db = new Engine.Db('./db', {});
         const booksCollection = db.collection("booksCollection");
 
-        const books = require('./jsonData/books');
+        const books = require('../jsonData/books');
 
         booksCollection.insert(books, {w:1}, function(err, result) {
             console.log('insert', err, result);
