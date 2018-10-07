@@ -27,6 +27,7 @@ const viewEngine = expressHandlebars({
     layoutsDir: settings.viewsPath,
     partialsDir: settings.partialsPath,
 });
+app.set('views', settings.viewsPath);
 app.engine('hbs', viewEngine);
 app.set('view engine', 'hbs');
 
@@ -35,8 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
+  src: settings.staticPath,
+  dest: settings.staticPath,
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));

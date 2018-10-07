@@ -53,7 +53,7 @@ const settings = {
         },
         {
             path: 'book',
-            view: 'book',
+            view: 'single-book',
             data: {},
             url: 'http://localhost:3000/api/books/2',
         },

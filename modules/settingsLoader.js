@@ -5,7 +5,6 @@ const path = require('path');
 const DEFAULT_SETTINGS_PATH = './sample'; // relative to app root
 const SETTINGS_FILE_NAME = 'settings';
 
-console.log(process.argv);
 const settingsPath = process.argv[2];
 const settingsDir = path.join(global.appRoot, settingsPath || DEFAULT_SETTINGS_PATH);
 const settingFile = path.join(settingsDir, SETTINGS_FILE_NAME);
