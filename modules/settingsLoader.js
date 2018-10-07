@@ -2,7 +2,7 @@
  * load and validate settingsLoader file
  */
 const path = require('path');
-const DEFAULT_SETTINGS_PATH = './'; // relative to app root
+const DEFAULT_SETTINGS_PATH = './sample'; // relative to app root
 const SETTINGS_FILE_NAME = 'settings';
 
 console.log(process.argv);
