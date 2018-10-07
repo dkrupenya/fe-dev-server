@@ -6,16 +6,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 </head>
 <body>
-
+    <p>
+        Откройте консоль. Все изменения все изменения в базе данных будут отображаться в консоли
+    </p>
+    <p>
+        Для работы с REST API вы можете воспользоваться приложением <a href="https://www.getpostman.com/">Postman</a> и коллекцией запросов для него,
+        которая находится в папке <pre>/sample/fe-dev-server.postman_collection.json</pre>
+    </p>
 </body>
 <script>
     var socket = io();
     socket.on('connect', function() {
         console.log('connected to server');
-        // changes channel - server will send here all db changes
-        socket.on('changes channel', function(msg) {
-            console.log(msg);
-        })
+    });
+    // changes channel - server will send here all db changes
+    socket.on('changes channel', function(msg) {
+        console.log(msg);
     });
 </script>
 </html>

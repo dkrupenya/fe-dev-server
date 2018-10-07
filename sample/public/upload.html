@@ -5,7 +5,11 @@
     <title>upload example</title>
 </head>
 <body>
-    <h2>Choose file to upload</h2>
+    <h2>Выберите файл</h2>
+    <p>
+        файл будет сохранён в папке <pre>/sample/public/uploaded/file_name</pre>
+        и доступен по адресу <pre>http://localhost:3000/uploaded/file_name</pre>
+    </p>
     <form ref='uploadForm'
           id='uploadForm'
           action='http://localhost:3000/upload/file'

@@ -1,14 +1,14 @@
 [
   {
-    "id": "1",
+    "_id": 1,
     "name": "Java EE for Impatient"
   },
   {
-    "id": "2",
+    "_id": 2,
     "name": "JavaScript: Good Parts"
   },
   {
-    "id": "3",
+    "_id": 3,
     "name": "The CSS Anthology"
   }
 ]

@@ -1,14 +1,20 @@
 [
   {
-    "id": "1",
+    "_id": 1,
+    "login": "John",
+    "password": "12345",
     "name": "John"
   },
   {
-    "id": "2",
+    "_id": 2,
+    "login": "Karl",
+    "password": "12345",
     "name": "Karl"
   },
   {
-    "id": "3",
+    "_id": 3,
+    "login": "Elena",
+    "password": "12345",
     "name": "Elena"
   }
 ]
