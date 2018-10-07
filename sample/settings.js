@@ -1,26 +1,54 @@
+// Все пути указываются относительно расположения файла settings.js
+
 const settings = {
+    // файлы в этой папке и её подпапках отдаются как обычные статические файлы
+    // и доступны по адресу http://localhost:3000/имя_файла
     staticPath: 'public',
-    // it is better to keep uploaded files inside static directory
-    // in order to have access to these files
+
+    // в эту папку будут сохраняться файлы при загрузке их на сервер
+    // лучше, чтобы эта папка находилась внутри пути для статических файлов
+    // тогда загруженные файлы будут доступны для чтения снаружи
     fileUploadPath: 'public/uploaded',
+
+    // путь до шаблонов handlebars
     viewsPath: 'views',
+
+    // путь до блоков (handlebars partials)
     partialsPath: 'views/partials',
+
+    // в этой папке будут храниться коллекции документов
     dbPath: 'db',
+
+    // конфигурирование коллекций документов
     collections: [
         {
+            // название коллекции
+            name: 'books',
+            // файл для инициализации коллекции
+            initialData: 'jsonData/books.json',
+        },
+        {
+            // коллекция с названием users  - это специальная коллекция
+            // которая в дальнейшем будет использоваться для аутентификации
             name: 'users',
             initialData: 'jsonData/users.json',
         },
-        {
-            name: 'books',
-            initialData: 'jsonData/books.json',
-        },
     ],
+
+    // кофигурирование связи между шаблоном handlebars,
+    // данными и пути, по которому это всё показывать
     pages: [
         {
+            // показывать view по адресу http://localhost:3000/hbs/books
             path: 'books',
+            // рендерить шаблон /views/books
             view: 'books',
-            data: {},
+            // Эти данный будут доступны в шаблоне как {{ data.title }}
+            data: {
+                title: 'List of Books'
+            },
+            // результаты выполнения запроса будут доступны в шаблоне как {{resp}}
+            // ожидается, что запрос возвращает json
             url: 'http://localhost:3000/api/books',
         },
         {

@@ -4,7 +4,7 @@ const router = express.Router();
 const settings = require('../modules/settingsLoader');
 
 /* Rest api generator for collections */
-router.post('/', function (req, res, next) {
+router.post('/file', function (req, res, next) {
     if (!req.files) {
         return res.status(400).send('No files were uploaded.');
     }

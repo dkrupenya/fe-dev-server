@@ -1,0 +1,73 @@
+{
+	"variables": [],
+	"info": {
+		"name": "fe-dev-server",
+		"_postman_id": "0ed7f17c-76c2-d0d5-b8de-0288b7d449b7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get books",
+			"request": {
+				"url": "localhost:3000/api/books",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "create books or book",
+			"request": {
+				"url": "localhost:3000/api/books",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n    \"id\": \"1\",\n    \"name\": \"Java EE for Impatient 44\"\n},\n{\n    \"id\": \"1\",\n    \"name\": \"Java EE for Impatient 33\"\n}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "update book",
+			"request": {
+				"url": "localhost:3000/api/books/4",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_id\": 3,\n    \"name\": \"Java EE for Impatient 77\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete book",
+			"request": {
+				"url": "localhost:3000/api/books/4",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
