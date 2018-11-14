@@ -18,7 +18,11 @@ router.post('/:collection', function (req, res, next) {
     getCollection(req)
         .then(collection => {
             const record = req.body;
-            record._id = undefined;
+            if (Array.isArray(record)) {
+                record.forEach(r => delete r._id);
+            } else {
+                delete record._id;
+            }
             return util.promisify(cb => collection.insert(record, {w: 1}, cb))();
         })
         // socket broadcast
